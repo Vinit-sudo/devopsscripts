@@ -25,7 +25,7 @@ mv kops-linux-amd64 /usr/local/bin/kops
 aws s3api create-bucket --bucket vinit-kops-testbkt143333.k8s.local --region ap-south-1 --create-bucket-configuration LocationConstraint=ap-south-1
 aws s3api put-bucket-versioning --bucket vinit-kops-testbkt143333.k8s.local --region ap-south-1 --versioning-configuration Status=Enabled
 export KOPS_STATE_STORE=s3://vinit-kops-testbkt143333.k8s.local
-kops create cluster --name=vinit.k8s.local --zones=ap-south-1a,ap-south-1b --control-plane-count=1 --control-plane-size=t3.medium --node-count=2 --node-size=t3.small --node-volume-size=20 --control-plane-volume-size=20 --ssh-public-key=my-keypair.pub --image=ami-02d26659fd82cf299 --networking=calico --topology=public
+ kops create cluster --name vinit.k8s.local --zones ap-south-1a --master-count=1 --master-size t3.medium --node-count=2 --node-size t3.micro
 kops update cluster --name vinit.k8s.local --yes --admin
 
 
